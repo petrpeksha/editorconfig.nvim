@@ -35,8 +35,6 @@
     (vim.fn.winrestview view)))
 
 (fn properties.charset [bufnr val]
-  (assert (vim.tbl_contains [:utf-8 :utf-8-bom :latin1 :utf-16be :utf-16le] val)
-          "charset must be one of 'utf-8', 'utf-8-bom', 'latin1', 'utf-16be', or 'utf-16le'")
   (if (or (= val :utf-8) (= val :utf-8-bom))
       (do
         (tset vim.bo bufnr :fileencoding :utf-8)
