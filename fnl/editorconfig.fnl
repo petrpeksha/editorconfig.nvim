@@ -156,13 +156,7 @@
               (if (= parent curdir)
                   (set done? true)
                   (set curdir parent)))))
-      (var applied {})
-      (each [opt val (pairs opts)]
-        (when (not= val :unset)
-          (match (. properties opt)
-            func (match (pcall func bufnr val opts)
-                   true (tset applied opt val)
-                   (false err) (warn (: "editorconfig: invalid value for option %s: %s. %s" :format opt val err))))))
+      (var applied {})      
       (tset vim.b bufnr :editorconfig applied))))
 
 (fn trim_trailing_whitespace []
